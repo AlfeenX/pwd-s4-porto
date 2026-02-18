@@ -80,7 +80,7 @@ main {
 
 .intro-text {
   font-size: 1.2rem;
-  width: 600px;
+  width: 580px;
   font-family: "JetBrains Mono", monospace;
   letter-spacing: -0.5px;
 }
@@ -116,14 +116,6 @@ main {
   background-color: var(--primary-color);
   color: var(--secondary-color);
 }
-
-.intro-text p span {
-  padding: 0 6px;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  font-weight: 600;
-}
-
 .first-row {
   display: flex;
   align-items: center;
@@ -132,6 +124,7 @@ main {
   left: 50%;
   transform: translateX(-50%);
   top: 100px;
+  will-change: transform;
 }
 
 .second-row {
@@ -142,6 +135,7 @@ main {
   left: 50%;
   transform: translateX(-50%);
   top: 250px;
+  will-change: transform;
 }
 
 .first-row h1 {
@@ -168,10 +162,6 @@ main {
 .first-row h1::selection {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-}
-.about {
-  gap: 40px;
-  text-align: center;
 }
 
 .about::selection {
@@ -208,6 +198,37 @@ main {
   margin: 30px 0 20px 0;
 }
 
+.about {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.scroll-reveal span {
+  color: rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(90deg, black, black);
+  background-clip: text;
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  animation: scroll-reveal linear forwards;
+  animation-timeline: view();
+}
+
+.scroll-reveal h1 span {
+  animation-range-start: cover 20vh;
+  animation-range-end: cover 30vh;
+}
+
+.scroll-reveal p span {
+  animation-range-start: cover 23vh;
+  animation-range-end: cover 50vh;
+}
+
+@keyframes scroll-reveal {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
 .about h1 {
   font-size: 36px;
   margin: 0;
@@ -219,7 +240,6 @@ main {
   font-size: 18px;
   line-height: 1.6;
   font-family: "JetBrains Mono", sans-serif;
-  color: #494242;
   width: 70%;
   margin: auto;
 }
@@ -310,6 +330,12 @@ main {
   overflow-x: auto;
   padding-bottom: 10px;
   scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.projects::-webkit-scrollbar {
+  display: none;
 }
 
 .project-card {
@@ -367,15 +393,12 @@ main {
   border: 2px solid #ffffff;
 }
 
-
-
 footer {
   text-align: center;
   font-size: 14px;
   color: #777777;
   background-color: #000000;
 }
-
 
 footer p {
   padding: 20px 0;
@@ -388,3 +411,36 @@ footer p::selection {
   color: var(--primary-color);
 }
 
+@keyframes slideUpChar {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.word-animated {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.word-animated.animate {
+  animation: slideUpChar 0.6s ease-out forwards;
+}
+
+.projects .project-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.projects .project-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}

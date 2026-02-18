@@ -1,0 +1,105 @@
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.close-btn {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    width: 90%;
+    padding: 15px 20px;
+    transform: none;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  /* Sidebar */
+  .nav-menus {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--secondary-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 0 auto;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease-in-out;
+    z-index: 100;
+  }
+
+  .nav-menus.active {
+    margin-top: 0;
+    right: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .close-btn {
+    display: block;
+  }
+
+  .first-row h1,
+  .second-row h1 {
+    font-size: 4rem;
+    -webkit-text-stroke: 1px var(--primary-color);
+  }
+
+  .intro-text {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .hero {
+    height: 400px;
+  }
+
+  .first-row {
+    top: 100px;
+  }
+
+  .second-row {
+    top: 180px;
+  }
+
+  .swipable-buttons {
+    display: none;
+  }
+  .contact h1 {
+    font-size: 32px;
+  }
+
+  .contact p {
+    text-align: center;
+    font-size: 16px;
+    max-width: 80%;
+  }
+
+  .about p {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  .separator {
+    width: 150px;
+  }
+}
